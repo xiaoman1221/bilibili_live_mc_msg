@@ -12,7 +12,7 @@ import blivedm
 #当插件被加载时(on_load)
 def on_load(server: PluginServerInterface, old):
     server.logger.info(server.tr('bilibili_live_mc_msg.load_message'))
-    asyncio.get_event_loop().run_until_complete(main())
+    server.logger.info(main())
 #强缩进，注意空格！
 
 
@@ -22,7 +22,6 @@ TEST_ROOM_IDS = [
     
 ]
 async def run_single_client():
-
     room_id = random.choice(TEST_ROOM_IDS)
     # 如果SSL验证失败就把ssl设为False，B站真的有过忘续证书的情况
     client = blivedm.BLiveClient(room_id, ssl=True)
@@ -31,10 +30,8 @@ async def run_single_client():
 
     client.start()
     try:
-        # 演示5秒后停止
         await asyncio.sleep(5)
         client.stop()
-
         await client.join()
     finally:
         await client.stop_and_close()
