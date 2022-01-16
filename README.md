@@ -1,5 +1,5 @@
-# This plugin is under development
-## 2022-1-16 22:00:25
-## The purpose of this plug-in is to send the live broadcast barrage information of BiliBili to the Minecraft message bar in real time
+# 插件开发中
+## 2022年1月16日22:00:25
+## 这个插件的目的是将bilibili直播弹幕信息实时发送到我的世界消息栏
 
-## Please look forward to
+## 敬请期待
