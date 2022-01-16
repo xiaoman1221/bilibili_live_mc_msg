@@ -6,18 +6,20 @@ from mcdreforged.api.all import *
 from bilibili_live_mc_msg import libs
 #加载依赖
 import asyncio
-import random
 import blivedm
+import random
 
 #当插件被加载时(on_load)
 def on_load(server: PluginServerInterface, old):
     server.logger.info(server.tr('bilibili_live_mc_msg.load_message'))
+    server.register_event_listener('on_server_stop')
 #强缩进，注意空格！
 
 #当服务器停止的时候
 def on_server_stop(server: PluginServerInterface, server_return_code: int):
     if server_return_code != 0:
-        asyncio.get_event_loop().run_until_complete(main())
+        server.logger.info(asyncio.get_event_loop().run_until_complete(main()))
+        server.logger.info("服务器停止运行，这不是错误？")
 
 
 #config_path = '../config/xiaoman1221_blh/config.json'
@@ -32,7 +34,6 @@ TEST_ROOM_IDS = [
 
 async def main():
     await run_single_client()
-    await run_multi_client()
 
 
 async def run_single_client():
