@@ -7,7 +7,7 @@ from bilibili_live_mc_msg import libs
 #加载依赖
 import asyncio
 import random
-from blivedm import blivedm
+import blivedm
 
 #当插件被加载时(on_load)
 def on_load(server: PluginServerInterface, old):
@@ -16,6 +16,28 @@ def on_load(server: PluginServerInterface, old):
 #强缩进，注意空格！
 
 
+# 直播间ID的取值看直播间URL
+TEST_ROOM_IDS = [
+    7777,
+    
+]
+async def run_single_client():
+
+    room_id = random.choice(TEST_ROOM_IDS)
+    # 如果SSL验证失败就把ssl设为False，B站真的有过忘续证书的情况
+    client = blivedm.BLiveClient(room_id, ssl=True)
+    handler = MyHandler()
+    client.add_handler(handler)
+
+    client.start()
+    try:
+        # 演示5秒后停止
+        await asyncio.sleep(5)
+        client.stop()
+
+        await client.join()
+    finally:
+        await client.stop_and_close()
 class MyHandler(blivedm.BaseHandler):
     # # 演示如何添加自定义回调
     # _CMD_CALLBACK_DICT = blivedm.BaseHandler._CMD_CALLBACK_DICT.copy()
@@ -42,35 +64,5 @@ class MyHandler(blivedm.BaseHandler):
     async def _on_super_chat(self, client: blivedm.BLiveClient, message: blivedm.SuperChatMessage):
         print(f'[{client.room_id}] 醒目留言 ¥{message.price} {message.uname}：{message.message}')
 
-
-
-# 直播间ID的取值看直播间URL
-TEST_ROOM_IDS = [
-    7777,
-    
-]
-
-
 async def main():
     await run_single_client()
-
-
-async def run_single_client():
-    """
-    演示监听一个直播间
-    """
-    room_id = random.choice(TEST_ROOM_IDS)
-    # 如果SSL验证失败就把ssl设为False，B站真的有过忘续证书的情况
-    client = blivedm.BLiveClient(room_id, ssl=True)
-    handler = MyHandler()
-    client.add_handler(handler)
-
-    client.start()
-    try:
-        # 演示5秒后停止
-        await asyncio.sleep(5)
-        client.stop()
-
-        await client.join()
-    finally:
-        await client.stop_and_close()
