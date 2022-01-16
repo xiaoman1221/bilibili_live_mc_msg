@@ -1,8 +1,5 @@
-MCDReforged Plugin Template
------
+# 插件开发中
+## 2022年1月16日22:00:25
+## 这个插件的目的是将bilibili直播弹幕信息实时发送到我的世界消息栏
 
-A template for MCDReforged (>=2.x) plugin
-
-Try `python -m mcdreforged pack` to generate the packed plugin!
-
-This template is under the CC0 license. Feel free to use it!
+## 敬请期待
