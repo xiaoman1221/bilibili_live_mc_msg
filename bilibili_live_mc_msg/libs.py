@@ -8,7 +8,6 @@ import asyncio
 import blivedm
 import random
 
-
 # 直播间ID的取值,看直播间URL
 # 例子：https://live.bilibili.com/13007212,其中13007212就是直播间ID
 # 支持多个直播间轮询

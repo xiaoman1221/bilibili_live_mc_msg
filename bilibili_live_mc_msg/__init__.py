@@ -35,5 +35,3 @@ def on_server_stop(server: PluginServerInterface, server_return_code: int):
 
     else:
         server.logger.info(server.tr('main_mag.server_stop_message'))
-
-
