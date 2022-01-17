@@ -2,14 +2,17 @@
     "id": "bilibili_live_mc_msg",
     "version": "0.12.1",
     "name": "bilibili直播",
-    "description": "这个插件可以实现我的世界信息和bilibili直播弹幕单项传输",
     "author": [
         "xiaoman1221"
     ],
     "link": "https://github.com/xiaoman1221/bilibili_live_mc_msg",
-    "dependencies": {
+    "description": {
+        "en_us": "A MCDReforged plugin ",
+        "zh_cn": "这个插件可以实现我的世界信息和bilibili直播弹幕单项传输"
     },
-
+    "dependencies": {
+        "mcdreforged": ">=2.2.0"
+    },
     "resources": [
         "lang"
     ]

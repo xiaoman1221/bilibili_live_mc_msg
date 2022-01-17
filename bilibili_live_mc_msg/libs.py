@@ -1,6 +1,8 @@
 # -*- coding: utf-8 -*-
 
 #加载API
+from pickle import TRUE
+from time import sleep
 from mcdreforged.api.all import *
 #加载依赖
 import asyncio
@@ -15,7 +17,7 @@ ROOM_IDS = [
     23367128,#DurexAir
     13007212 #xiaoman1221
 ]
-async def run_single_client():
+def run_single_client():
     """
     监听直播间
     """
@@ -30,29 +32,30 @@ async def run_single_client():
     client.start()
     try:
         # 5秒后停止
-        await asyncio.sleep(5)
+        sleep(5)
         client.stop()
 
-        await client.join()
+        client.join()
     finally:
-        await client.stop_and_close()
+        client.stop_and_close()
 class BLH_Handler(blivedm.BaseHandler):
-
-    async def _on_heartbeat(self, client: blivedm.BLiveClient, message: blivedm.HeartbeatMessage):
-        print(f'[{client.room_id}] 当前人气值：{message.popularity}')
-
-    async def _on_danmaku(self, client: blivedm.BLiveClient, message: blivedm.DanmakuMessage):
-        print(f'[{client.room_id}] {message.uname}：{message.msg}')
-
-    async def _on_gift(self, client: blivedm.BLiveClient, message: blivedm.GiftMessage):
-        print(f'[{client.room_id}] {message.uname} 赠送{message.gift_name}x{message.num}'
+     def _on_heartbeat(self, client: blivedm.BLiveClient, message: blivedm.HeartbeatMessage,server: PluginServerInterface):
+        server.say(f'[{client.room_id}] 当前人气值：{message.popularity}')
+    
+     def _on_danmaku(self, client: blivedm.BLiveClient, message: blivedm.DanmakuMessage,server: PluginServerInterface):
+    
+        server.say(f'[{client.room_id}] {message.uname}：{message.msg}')
+     def _on_gift(self, client: blivedm.BLiveClient, message: blivedm.GiftMessage,server: PluginServerInterface):
+        server.say(f'[{client.room_id}] {message.uname} 赠送{message.gift_name}x{message.num}'
               f' （{message.coin_type}瓜子x{message.total_coin}）')
+    
+     def _on_buy_guard(self, client: blivedm.BLiveClient, message: blivedm.GuardBuyMessage,server: PluginServerInterface):
+        server.say(f'[{client.room_id}] {message.username} 购买{message.gift_name}')
+    
+     def _on_super_chat(self, client: blivedm.BLiveClient, message: blivedm.SuperChatMessage,server: PluginServerInterface):
+        server.say(f'[{client.room_id}] 醒目留言 ¥{message.price} {message.uname}：{message.message}')
 
-    async def _on_buy_guard(self, client: blivedm.BLiveClient, message: blivedm.GuardBuyMessage):
-        print(f'[{client.room_id}] {message.username} 购买{message.gift_name}')
-
-    async def _on_super_chat(self, client: blivedm.BLiveClient, message: blivedm.SuperChatMessage):
-        print(f'[{client.room_id}] 醒目留言 ¥{message.price} {message.uname}：{message.message}')
-
-async def main():
-    await run_single_client()
+def main():
+    while TRUE:
+        run_single_client()
+        sleep(5)
