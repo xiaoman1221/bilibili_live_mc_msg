@@ -1,6 +1,6 @@
 {
     "id": "bilibili_live_mc_msg",
-    "version": "0.1.1",
+    "version": "0.12.1",
     "name": "bilibili直播",
     "description": "这个插件可以实现我的世界信息和bilibili直播弹幕单项传输",
     "author": [
