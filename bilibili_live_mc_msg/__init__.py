@@ -15,7 +15,7 @@ def on_load(server: PluginServerInterface, prev_module):
     if prev_module is None:
         server.logger.info(server.tr('main_msg.load_message'))
         server.say(server.tr('main_msg.load_message'))
-        #server.register_command(...)
+        server.register_command(command_list)
         #server.register_event_listener(...)
         #server.register_help_message(...)
     else:
@@ -27,6 +27,15 @@ def on_server_startup(server: PluginServerInterface):
     server.logger.info(server.tr('main_msg.server_start_message'))
     server.say(server.tr('main_msg.server_start_message'))
 
+#当服务器有人加入时的欢迎信息
+def on_player_joined(server: PluginServerInterface, player: str, info: Info):
+    server.say('Welcome {}'.format(player))
+
+#当服务器有人离开时的信息
+def on_player_left(server: PluginServerInterface, player: str, info: Info):
+    server.say('Goodbye {}'.format(player))
+
+
 
 #当服务器停止的时候
 def on_server_stop(server: PluginServerInterface, server_return_code: int):
@@ -35,3 +44,6 @@ def on_server_stop(server: PluginServerInterface, server_return_code: int):
 
     else:
         server.logger.info(server.tr('main_mag.server_stop_message'))
+#尝试构建一些指令
+class command_list():
+    pass
