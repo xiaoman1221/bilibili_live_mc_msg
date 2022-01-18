@@ -3,9 +3,10 @@
 #加载所有API
 from mcdreforged.api.all import *
 #加载库文件
-from bilibili_live_mc_msg import libs
+from bilibili_live_mc_msg import *
 #加载依赖
 import asyncio
+from bilibili_live_mc_msg.libs import *
 import blivedm
 import random
 
@@ -14,7 +15,27 @@ def on_load(server: PluginServerInterface, prev_module):
     global reload_counter
     if prev_module is None:
         server.logger.info(server.tr('main_msg.load_message'))
-        #server.register_command(command_list)
+        #在尝试一下构建指令
+        server.register_command(
+            Literal('!!blhx').
+                then( 
+                    Literal('room').   
+                        then(
+                            Literal('list')
+                        ).
+                        then(
+                            Literal('remove').
+                                then(
+                                    Integer('room_id')
+                                )).
+                            then(Literal('add').
+                                then(
+                                    Integer('room_id')
+                                )
+                            )    
+                )
+            )
+        
         #server.register_help_message(...)
     else:
         server.logger.info(server.tr('main_msg.reload_message'))
@@ -24,8 +45,7 @@ def on_load(server: PluginServerInterface, prev_module):
 def on_server_startup(server: PluginServerInterface):
     server.logger.info(server.tr('main_msg.server_start_message'))
     server.say(server.tr('main_msg.server_start_message'))
-    
-    libs.main()
+    #main()
 
 #当服务器有人加入时的欢迎信息
 def on_player_joined(server: PluginServerInterface, player: str, info: Info):
@@ -42,6 +62,3 @@ def on_server_stop(server: PluginServerInterface, server_return_code: int):
 
     else:
         server.logger.info(server.tr('main_mag.server_stop_message'))
-#尝试构建一些指令
-class command_list():
-    pass

@@ -59,3 +59,25 @@ def main():
     while TRUE:
         run_single_client()
         sleep(5)
+def print_help_message():
+    return '帮助信息'
+def print_unknown_argument_message():
+    return '未知信息帮助信息'
+def get_help_msg():
+    return '获取帮助信息'
+def get_page_count():
+    #获取页数？？
+    return 1
+def add_live_room(roomid):
+    ROOM_IDS.append(roomid)   ## 使用 append() 添加元素
+    return 0
+def add_live_room(count):
+    del ROOM_IDS[count]
+    return 0
+def get_room_list(server: PluginServerInterface):
+    for item in ROOM_IDS:
+        server.say(item)
+def get_help_info():
+    return '获取帮助info'
+def reload_room():
+    pass
