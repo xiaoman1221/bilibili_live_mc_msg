@@ -71,7 +71,7 @@ class BLH_Handler(blivedm.BaseHandler):
     
      def _on_super_chat(self, client: blivedm.BLiveClient, message: blivedm.SuperChatMessage,server: PluginServerInterface):
         server.say(f'[{client.room_id}] 醒目留言 ¥{message.price} {message.uname}：{message.message}')
-#监听MIan主程序
+#监听MIan主程序---------------------------------------
 async def main():
     await run_single_client()
     await run_multi_client()
