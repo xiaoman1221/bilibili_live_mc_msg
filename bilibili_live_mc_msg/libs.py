@@ -10,10 +10,11 @@ import random
 # 直播间ID的取值,看直播间URL
 # 例子：https://live.bilibili.com/13007212,其中13007212就是直播间ID
 # 支持多个直播间轮询
-ROOM_IDS = [
-    23367128,#DurexAir
-    13007212 #xiaoman1221
-]
+INIT_ROOMS=[]
+ROOM_IDS = []
+ROOM_MAME = []
+ROMMS = {}
+
 #监听单个------------------------------------------
 async def run_single_client():
     """
@@ -76,25 +77,41 @@ async def main():
     await run_multi_client()
 
 #指令树相关！！------------------------------------------------------------------
-def print_help_message():
-    return '帮助信息'
-def print_unknown_argument_message():
-    return '未知信息帮助信息'
-def get_help_msg():
-    return '获取帮助信息'
-def get_page_count():
-    #获取页数？？
-    return 1
-def add_live_room(roomid):
-    ROOM_IDS.append(roomid)   ## 使用 append() 添加元素
-    return 0
-def add_live_room(count):
-    del ROOM_IDS[count]     ##使用del删除元素
-    return 0
-def get_room_list(server: PluginServerInterface):
-    for item in ROOM_IDS:
-        server.say(item)  #遍历数组
-def get_help_info():
-    return '获取帮助info'
-def reload_room():
+def print_help_message(src: CommandSource):
+    src.reply('帮助信息')
+    return True
+def print_unknown_argument_message(src: CommandSource):
+    src.reply('未知帮助信息')
+#添加房间=================================================
+def add_live_room(roomid,roomname,src: CommandSource):
+    for item_id in ROOM_IDS:
+        for item_name in ROOM_MAME:
+            if item_id == roomid or item_name == roomname:
+                src.reply (False)
+            else:
+                ROOM_IDS.append(roomid)   ## 使用 append() 添加元素
+                ROOM_MAME.append(roomname)
+                src.reply('已添加')
+#删除房间=================================================
+def del_live_room(count,src: CommandSource):
+    if ROOM_IDS == INIT_ROOMS and ROOM_MAME == INIT_ROOMS:
+        src.reply("无房间")
+    else:
+        if len(ROOM_IDS) == len(ROOM_MAME):
+            del ROOM_IDS[count]     ##使用del删除元素
+            del ROOM_MAME[count]
+            src.reply("已删除")
+        else:
+            src.reply("未知错误")
+#遍历房间列表=================================================
+def get_room_list(src: CommandSource):
+    for item_id in ROOM_IDS:
+        for item_name in ROOM_MAME:
+            src.reply(str(item_name) + str(item_id))  #遍历List
+#咕咕咕~~
+def room_start_sync():
+    pass
+def room_stop_sync():
+    pass
+def room_reload_sync():
     pass
