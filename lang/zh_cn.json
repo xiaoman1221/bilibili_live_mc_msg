@@ -1,7 +1,7 @@
 {
-    "main_msg.load_message": "正在加载xiaoman1221特制的blh......",
-    "main_msg.reload_message": "正在重新加载xiaoman1221特制的blh......",
-    "main_msg.unload_message": "正在卸载xiaoman1221特制的blh......，",
+    "main_msg.load_message": "正在加载BLHX......",
+    "main_msg.reload_message": "正在重新加载BLHX......",
+    "main_msg.unload_message": "正在卸载BLHX......，",
     "main_msg.server_start_message": "服务器启动完毕",
     "main_mag.server_stop_message": "服务器停止运行，这不是错误导致的",
     "main_mag.server_error_stop_message": "服务器停止运行，这可能是错误导致的"

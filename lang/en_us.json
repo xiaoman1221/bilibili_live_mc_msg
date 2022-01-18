@@ -1,7 +1,7 @@
 {
-    "main_msg.load_message": "Loading xiaoman1221 blh......",
-    "main_msg.reload_message": "Reloading xiaoman1221 blh......",
-    "main_msg.unload_message": "Unloading xiaoman1221 blh......，",
+    "main_msg.load_message": "Loading xiaoman1221 blhX......",
+    "main_msg.reload_message": "Reloading xiaoman1221 blhX......",
+    "main_msg.unload_message": "Unloading xiaoman1221 blhX......，",
     "main_msg.server_start_message": "The Server is started",
     "main_mag.server_stop_message": "The server stopped running. This is not caused by an error",
     "main_mag.server_error_stop_message": "The server is down, but there may be an error"

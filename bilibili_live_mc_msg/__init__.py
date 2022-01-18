@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
 
 #加载所有API
+from atexit import register
 from mcdreforged.api.all import *
 #加载库文件
 from bilibili_live_mc_msg import *
@@ -15,7 +16,7 @@ def on_load(server: PluginServerInterface, prev_module):
     global reload_counter
     if prev_module is None:
         server.logger.info(server.tr('main_msg.load_message'))
-        #在尝试一下构建指令
+        #构建指令
         server.register_command(
             Literal('!!blhx').
                 then( 
@@ -27,16 +28,53 @@ def on_load(server: PluginServerInterface, prev_module):
                             Literal('remove').
                                 then(
                                     Integer('room_id')
-                                )).
-                            then(Literal('add').
+                                )
+                        ).
+                        then(Literal('add').
                                 then(
                                     Integer('room_id')
                                 )
-                            )    
+                        )    
                 )
             )
-        
-        #server.register_help_message(...)
+        server.register_command(
+            Literal('!!BLHX').
+                then( 
+                    Literal('room').   
+                        then(
+                            Literal('list')
+                        ).
+                        then(
+                            Literal('remove').
+                                then(
+                                    Integer('room_id')
+                                )
+                        ).
+                        then(Literal('add').
+                                then(
+                                    Integer('room_id')
+                                )
+                        )    
+                )
+        )
+        server.register_command(
+            Literal('!!blhx').
+                then( 
+                    Literal('help').
+                        then(
+                            Integer('page')
+                        ) 
+                )
+        )
+        server.register_command(
+            Literal('!!BLHX').
+                then( 
+                    Literal('help').
+                        then(
+                            Integer('page')
+                        ) 
+                )
+        )
     else:
         server.logger.info(server.tr('main_msg.reload_message'))
         server.say(server.tr('main_msg.reload_message'))
