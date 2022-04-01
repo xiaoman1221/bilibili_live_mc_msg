@@ -4,28 +4,27 @@
 from mcdreforged.api.all import *
 #加载库文件
 from bilibili_live_mc_msg import *
-from bilibili_live_mc_msg.blhx_command import register_blhx_command
+from bilibili_live_mc_msg.blhx_command import *
 from bilibili_live_mc_msg.libs import *
 #加载依赖
-import asyncio
-import random
+#import asyncio
+#import random
 
-
-     
 #当插件被加载时(on_load)
 def on_load(server: PluginServerInterface, prev_module):
     if prev_module is None:
         server.logger.info(server.tr('main_msg.load_message'))
-        lambda src: register_blhx_command(src)
-
+        add_help_command(server)
+        #构建指令
+        add_command(server)
     else:
         server.logger.info(server.tr('main_msg.reload_message'))
         server.say(server.tr('main_msg.reload_message'))
-        lambda server: register_blhx_command(server)
-
+        add_help_command(server)
+        #构建指令
+        add_command(server)
 #服务器Done的时候
 def on_server_startup(server: PluginServerInterface):
-    #构建指令
     server.logger.info(server.tr('main_msg.server_start_message'))
     server.say(server.tr('main_msg.server_start_message'))
     #main()
