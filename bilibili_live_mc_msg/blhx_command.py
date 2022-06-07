@@ -8,7 +8,9 @@ from bilibili_live_mc_msg.libs import add_live_room, del_live_room, get_room_lis
 
 global live_status
 live_status=False 
-
+'''
+    命令树
+'''
 def add_help_command(server):
     server.register_help_message('!!blhx', 'BiliBili弹幕姬，小满特制版')
     server.register_help_message('!!blhx help', '获得blhx的帮助信息')

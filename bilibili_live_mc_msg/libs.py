@@ -78,19 +78,19 @@ class BLH_Handler(blivedm.BaseHandler):
     
      def _on_super_chat(self, client: blivedm.BLiveClient, message: blivedm.SuperChatMessage,server: PluginServerInterface):
         server.say(f'[{client.room_id}] 醒目留言 ¥{message.price} {message.uname}：{message.message}')
-#监听MIan主程序---------------------------------------
+#监听MIan主程序 =================================================
 
 async def run_sync_main():
     await run_single_client()
     await run_multi_client()
 
-#指令树相关！！------------------------------------------------------------------
+#指令树相关！！=================================================
 def print_help_message(src: CommandSource):
     src.reply('帮助信息')
     return True
 def print_unknown_argument_message(src: CommandSource):
     src.reply('未知帮助信息')
-#添加房间=================================================
+#添加房间 =================================================
 def add_live_room(roomid,roomname,src: CommandSource):
     for item_id in ROOM_IDS:
         for item_name in ROOM_MAME:
