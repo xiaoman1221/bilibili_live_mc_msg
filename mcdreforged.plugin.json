@@ -8,7 +8,7 @@
     "link": "https://github.com/xiaoman1221/bilibili_live_mc_msg",
     "description": {
         "en_us": "A MCDReforged plugin ",
-        "zh_cn": "这个插件可以实现我的世界信息和bilibili直播弹幕单项传输"
+        "zh_cn": "这个插件可以实现我的世界信息和bilibili直播弹幕传输"
     },
     "dependencies": {
         "mcdreforged": ">=2.2.0"

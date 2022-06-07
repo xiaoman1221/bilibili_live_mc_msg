@@ -31,7 +31,7 @@ def on_server_startup(server: PluginServerInterface):
 
 #当服务器有人加入时的欢迎信息
 def on_player_joined(server: PluginServerInterface, player: str):
-    server.say('Welcome to Minectaft server ,{}'.format(player))
+    server.say('Welcome to DangoTown server ,{}'.format(player))
 
 #当服务器有人离开时的信息
 def on_player_lift(server: CommandSource, player: str):
@@ -41,6 +41,5 @@ def on_player_lift(server: CommandSource, player: str):
 def on_server_stop(server: PluginServerInterface, server_return_code: int):
     if server_return_code != 0:
         server.logger.info(server.tr('main_mag.server_error_stop_message'))
-
     else:
         server.logger.info(server.tr('main_mag.server_stop_message'))
